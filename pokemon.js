@@ -1,5 +1,4 @@
 const move_max = 4;
-const max_interval = 2
 
 let FetchData = async function (search) {
     let source = await fetch('https://pokeapi.co/api/v2/pokemon/' + search.toString());
@@ -8,25 +7,21 @@ let FetchData = async function (search) {
 
 let FetchEvoChain = async function (pokemon) {
 
-    //clear previous interval
-    for (let i = 1; i < max_interval; i++) window.clearInterval(i);
+    let interval_id = window.setInterval("", 9999);
+    for (let i = 1; i < interval_id; i++)
+        window.clearInterval(i);
 
-    //fetch evolution chain
     let source = await fetch(pokemon['species']['url']);
     let data = await source.json();
     source = await fetch(data['evolution_chain']['url']);
     data = await source.json();
 
-
-    //fetch & display base form
     let base = await FetchData(data['chain']['species']['name'])
 
     document.getElementById('base').src = base['sprites']['other']['official-artwork']['front_default']
     document.getElementById('base').title = base['name']
     document.getElementById('base').classList.remove('invisible')
 
-
-    //fetch & display evolutions (if exist) - turn invisible if don't exist
     let k = 0
     let l = 0
     if (data['chain']['evolves_to'].length > 0) {
