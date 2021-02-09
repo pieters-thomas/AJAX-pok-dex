@@ -1,28 +1,56 @@
 const move_max = 4;
+const max_interval = 2
+
 let FetchData = async function (search) {
     let source = await fetch('https://pokeapi.co/api/v2/pokemon/' + search.toString());
     return await source.json();
 };
+
 let FetchEvoChain = async function (pokemon) {
+
+    //clear previous interval
+    for (let i = 1; i < max_interval; i++) window.clearInterval(i);
+
+    //fetch evolution chain
     let source = await fetch(pokemon['species']['url']);
     let data = await source.json();
     source = await fetch(data['evolution_chain']['url']);
     data = await source.json();
 
+
+    //fetch & display base form
     let base = await FetchData(data['chain']['species']['name'])
 
     document.getElementById('base').src = base['sprites']['other']['official-artwork']['front_default']
+    document.getElementById('base').title = base['name']
     document.getElementById('base').classList.remove('invisible')
 
+
+    //fetch & display evolutions (if exist) - turn invisible if don't exist
+    let k = 0
+    let l = 0
     if (data['chain']['evolves_to'].length > 0) {
-        let evo1 = await FetchData(data['chain']['evolves_to'][0]['species']['name']);
-        document.getElementById('evo1').src = evo1['sprites']['other']['official-artwork']['front_default'];
         document.getElementById('evo1').classList.remove('invisible');
-        if (data['chain']['evolves_to'][0]['evolves_to'].length > 0) {
-            let evo2 = await FetchData(data['chain']['evolves_to'][0]['evolves_to'][0]['species']['name']);
-            document.getElementById('evo2').src = evo2['sprites']['other']['official-artwork']['front_default'];
+        setInterval(async function () {
+            let evo1 = await FetchData(data['chain']['evolves_to'][k]['species']['name']);
+            document.getElementById('evo1').src = evo1['sprites']['other']['official-artwork']['front_default'];
+            document.getElementById('evo1').title = evo1['name'];
+            k++;
+            if (k >= data['chain']['evolves_to'].length) k = 0;
+        }, 3000)
+
+        if (data['chain']['evolves_to'][k]['evolves_to'].length > 0) {
             document.getElementById('evo2').classList.remove('invisible');
-        } else document.getElementById('evo2').classList.add('invisible');
+            setInterval(async function () {
+                let evo2 = await FetchData(data['chain']['evolves_to'][k]['evolves_to'][l]['species']['name']);
+                document.getElementById('evo2').src = evo2['sprites']['other']['official-artwork']['front_default'];
+                document.getElementById('evo2').title = evo2['name'];
+                l++;
+                if (l >= data['chain']['evolves_to'][k]['evolves_to'].length) l = 0;
+            }, 3000)
+        } else {
+            document.getElementById('evo2').classList.add('invisible');
+        }
     } else {
         document.getElementById('evo1').classList.add('invisible');
         document.getElementById('evo2').classList.add('invisible');
@@ -33,7 +61,6 @@ document.getElementById('run').addEventListener('click', async function () {
         let input = document.getElementById('find').value
         let source = await fetch('https://pokeapi.co/api/v2/pokemon/' + input.toString());
         let pokemon = await source.json();
-
         //Get Name And Post !!!Add where to Post!!!
         document.getElementById('name_tag').innerText = '#' + pokemon['id'] + ' ' + pokemon['name']
 
@@ -64,6 +91,7 @@ document.getElementById('run').addEventListener('click', async function () {
         document.getElementById("pokemon_picture").src = pokemon['sprites']['other']['official-artwork']['front_default'];
 
         //Select Evolution Chain
+
         await FetchEvoChain(pokemon);
 
     }
