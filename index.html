@@ -2,41 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pokédex</title>
-    <link rel="stylesheet" href="pokemon.css">
+    <title>Title</title>
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
 
-<div class="topnav">
-    <img class="logo" src="https://www.clipartkey.com/mpngs/m/85-853729_pokemon-vector.png" alt="logo">
-</div>
-<div class="searchbar">
-    <input type="text" id="find" name="find">
-    <button type="button" id="run">Who's this pokemon?</button>
-</div>
-
-<div>
-    <div class="card">
-        <div id="window"><img id="pokemon_picture" alt="" src=""></div>
-        <div id="name_tag"></div>
+<div class="container">
+        <button id="search" class="case" ></button>
+        <div class="spaceHolder">
+            <label for="who'sThatPokemon"></label>
+            <input type="text" id="who'sThatPokemon" name="who'sThatPokemon">
+        </div>
+    <div class="buffer"></div>
+    <div class="statCase">
+        <div class="slider">
+            <button id="previous" class="sliderButton sliderComp"> <</button>
+            <div class="showCase sliderComp">
+                <img class="pokemonSprite" id="showSprite" src="" alt=" ">
+            </div>
+            <button id="next" class="sliderButton  sliderComp"> ></button>
+        </div>
+        <div class="nameTag" id="showTag"></div>
+        <div class="moveSet" id="moveContainer">
+            <div class="move"></div>
+            <div class="move"></div>
+            <div class="move"></div>
+            <div class="move"></div>
+        </div>
+        <div class="evoSet">
+            <div class="evoSlot  evoTagFirst">
+                <img src="" alt=" " id="base-evo-sprite" class="evoSprite">
+                <div class="evoTag" id="base-evo-tag"></div>
+            </div>
+            <div class="evoSlot" id="evoTagSecond">
+                <img src="" alt=" " id="first-evo-sprite" class="evoSprite">
+                <div class="evoTag" id="first-evo-tag"></div>
+            </div>
+            <div class="evoSlot" id="evoTagThird">
+                <img src="" alt=" " id="second-evo-sprite" class="evoSprite">
+                <div class="evoTag" id="second-evo-tag"></div>
+            </div>
+        </div>
     </div>
 
-    <div class="card">
-        <div class="move_set">
-            <div id="pokemon_move1" class="move_block"></div>
-            <div id="pokemon_move2" class="move_block"></div>
-            <div id="pokemon_move3" class="move_block"></div>
-            <div id="pokemon_move4" class="move_block"></div>
-        </div>
-
-        <div id="trial">
-            <img id="base" class="trialslot invisible" alt="" src="">
-            <img id="evo1" class="trialslot invisible" alt="" src="">
-            <img id="evo2" class="trialslot invisible" alt="" src="">
-        </div>
-    </div>
 </div>
 
 </body>
-<script src="pokemon.js"></script>
+<script src="script.js"></script>
 </html>
