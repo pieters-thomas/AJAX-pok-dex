@@ -24,7 +24,8 @@ body {
 .spaceHolder {
     height: 125px;
 }
-#who\'sThatPokemon{
+
+#who\'sThatPokemon {
     margin-top: 30px;
     width: 200px;
 
@@ -50,28 +51,33 @@ body {
     background: url("images/pokeballLogo.png");
     background-size: contain;
 }
-.case:hover,.sliderButton:hover{
+
+.case:hover, .sliderButton:hover {
     cursor: pointer;
 }
-.case:active{
+
+.case:active {
     transform: translateY(3px);
 }
 
-#previous:active{
+#previous:active {
     transform: translateX(-3px);
 }
-#next:active{
+
+#next:active {
     transform: translateX(3px);
 }
 
-.slider{
+.slider {
     width: 100%;
     text-align: center;
 }
-.sliderComp{
+
+.sliderComp {
     display: inline-block;
 }
-.sliderButton{
+
+.sliderButton {
     width: 40px;
     height: 40px;
     margin-top: 19%;
@@ -81,16 +87,19 @@ body {
     background-color: #80d1d1;
     font-size: 20px;
 }
-#previous{
+
+#previous {
     float: left;
     margin-left: 5%;
 
 }
-#next{
+
+#next {
     float: right;
     margin-right: 5%;
 }
-.showCase{
+
+.showCase {
     background-size: contain;
     background: royalblue url("images/pokeballBackdrop.png") no-repeat center;
     border-radius: 15px;
@@ -105,6 +114,7 @@ body {
     width: 170px;
     height: 170px;
 }
+
 .statCase {
     width: 100%;
     height: 500px;
@@ -120,28 +130,29 @@ body {
     background-color: #80d1d1;
     border: royalblue 1px solid;
     font-size: 18px;
-    font-weight: 700 ;
+    font-weight: 700;
     border-radius: 15px;
     height: 30px;
 }
 
-.moveSet,.evoSet{
-    margin: 15px auto ;
+.moveSet, .evoSet {
+    margin: 15px auto;
     background-color: #80d1d1;
     border: royalblue 1px solid;
     border-radius: 15px;
     font-size: 15px;
-    font-weight: 700 ;
+    font-weight: 700;
     z-index: 1;
     text-align: center;
     width: 90%;
 }
 
 
-.moveSet{
+.moveSet {
     height: 80px;
 }
-.move{
+
+.move {
     display: block;
 }
 
@@ -152,21 +163,24 @@ body {
     z-index: 1;
     text-align: center;
 }
-.evoSlot{
+
+.evoSlot {
     height: 95%;
     width: calc(30% - 2px);
     display: inline-block;
     font-size: 10px;
 }
-.evoSprite{
+
+.evoSprite {
     height: 75%;
     width: 100%;
 }
 
-.invisible{
+.invisible {
     display: none;
 }
-.evoTag{
+
+.evoTag {
     padding-top: 5px;
     width: 100%;
     display: block;
